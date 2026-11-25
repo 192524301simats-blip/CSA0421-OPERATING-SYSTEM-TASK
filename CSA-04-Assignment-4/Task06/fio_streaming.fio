@@ -1,0 +1,23 @@
+; Run ONLY on a dedicated test file:  fio Task06/fio_streaming.fio
+; Edit 'directory' to a folder on the disk you want to test. Record the output yourself.
+[global]
+directory=/tmp/fio_test
+size=1g
+ioengine=libaio
+direct=1
+runtime=30
+time_based
+group_reporting
+lat_percentiles=1
+
+[seq_read_8m_segments]
+rw=read
+bs=8m
+iodepth=4
+
+[random_seek_reads_4k]
+stonewall
+rw=randread
+bs=4k
+iodepth=16
+numjobs=4
